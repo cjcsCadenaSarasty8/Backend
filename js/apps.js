@@ -1,24 +1,29 @@
-function mostrarResultado(){
-  var ContenidoBusqueda=document.getElementById('Resultados');
-  var resultado="";
-  for(var i=0; i<5;i++){
-  resultado+="<div class='card horizontal'>";
-  resultado+="<div class='card-image'>";
-  resultado+="<img src='img/home.jpg'>";
-  resultado+="</div>";
-  resultado+="<div class='card-stacked'>";
-  resultado+="<div class='card-content'>";
-  resultado+="<strong>Direccion:</strong><br>";
-  resultado+="<strong>Ciudad:</strong><br>";
-  resultado+="<strong>Codigo Postal:</strong><br>";
-  resultado+="<strong>Tipo</strong><br>";
-  resultado+="<strong>Precio:</strong><br>";
-  resultado+="</div>";
-  resultado+="<div class='card-action'>";
-  resultado+="<a href='#'>VER MAS</a>";
-  resultado+="</div>";
-  resultado+="</div>";
-  resultado+="</div>";
+function MostrarTodo(){
+  var Ciudad="";
+  var Tipo="";
+  var precio="";
+  Buscar(Ciudad,Tipo,precio);
 }
-  ContenidoBusqueda.innerHTML=resultado;
+
+function MostrarFiltro(){
+  var Ciudad=$('form').find('select[name="ciudad"]').val();
+  var Tipo=$('form').find('select[name="tipo"]').val();
+  var precio=$('form').find('input[name="precio"]').val();
+  Buscar(Ciudad,Tipo,precio);
+}
+
+function Buscar(Ciudad,Tipo,Precio){
+  $.ajax({
+    url:'buscador.php',
+    type:'POST',
+    data:{
+      Ciudad:Ciudad,
+      Tipo:Tipo,
+      Precio:Precio
+    }
+  }).done (function (data){
+    var ContenidoBusqueda=document.getElementById('Resultados');
+   ContenidoBusqueda.innerHTML=data;
+   alert(data);
+  });
 }

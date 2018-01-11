@@ -29,7 +29,7 @@
       <h1>Buscador</h1>
     </div>
     <div class="colFiltros">
-      <form action="buscador.php" method="post" id="formulario">
+      <form id="formulario">
         <div class="filtrosContenido">
           <div class="tituloFiltros">
             <h5>Realiza una búsqueda personalizada</h5>
@@ -60,7 +60,7 @@
             <input type="text" id="rangoPrecio" name="precio" value="" />
           </div>
           <div class="botonField">
-            <input type="submit" class="btn white" value="Buscar" id="submitButton">
+            <input type="button" class="btn white" value="Buscar" onclick="MostrarFiltro();" id="submitButton">
           </div>
         </div>
       </form>
@@ -70,7 +70,7 @@
       <div class="tituloContenido card">
         <h5>Resultados de la búsqueda:</h5>
         <div class="divider"></div>
-        <button type="button" name="todos" class="btn-flat waves-effect" id="mostrarTodos" onclick="mostrarResultado();">Mostrar Todos</button>
+        <button type="button" name="todos" class="btn-flat waves-effect" id="MostrarTodo" onclick="MostrarTodo();" >Mostrar Todos</button>
       </div>
 
       <div id="Resultados">
