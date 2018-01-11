@@ -1,21 +1,25 @@
 <?php
 
-$Ciudad=$_POST['Ciudad'];
-$Tipo=$_POST['Tipo'];
-$Precio=$_POST['Precio'];
+
 MostrarElementos();
   function MostrarElementos(){
     $data_file = file_get_contents("data.json");
     $data = json_decode($data_file, true);
+
+    $Ciudad=$_POST['Ciudad'];
+    $Tipo=$_POST['Tipo'];
+    $Precio=$_POST['Precio'];
+    $PrecioLimites=explode(";", $Precio);
     $resultado="";
-    $resultado=$resultado." ciudad: ".$_POST['Ciudad'];
-    $resultado=$resultado." Tipo: ".$_POST['Tipo'];
-    $resultado=$resultado." Precio: ".$_POST['Precio'];
+    $resultado=$resultado." ciudad: ".$Ciudad;
+    $resultado=$resultado." Tipo: ".$Tipo;
+    $resultado=$resultado." Precio: ".$Precio;
     foreach ($data as $Domicilio) {
-     
+      $PrecioSolo=str_ireplace(",","",str_ireplace("$","",$Domicilio['Precio']));
+      if($Domicilio['Tipo']==$Tipo && $Domicilio['Ciudad']==$Ciudad && $PrecioSolo>=$PrecioLimites[0] && $PrecioSolo<=$PrecioLimites[1] ){
         $resultado=$resultado."<div class='card horizontal'>";
         $resultado=$resultado."<div class='card-image'>";
-        $resultado=$resultado."<img src='img/home.jpg'>";
+        $resultado=$resultado."<img src='img/home.jpg' width='auto' height?'100%'>";
         $resultado=$resultado."</div>";
         $resultado=$resultado."<div class='card-stacked'>";
         $resultado=$resultado."<div class='card-content'>";
@@ -30,9 +34,8 @@ MostrarElementos();
         $resultado=$resultado."</div>";
         $resultado=$resultado."</div>";
         $resultado=$resultado."</div>";
-    
+      }
   }
-
    echo $resultado;
   }
  ?>

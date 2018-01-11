@@ -53,7 +53,6 @@ function inicializarSelect(){
     $('select').material_select();
   });
 }
-
 inicializarSlider();
 playVideoOnScroll();
 inicializarSelect();

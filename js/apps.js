@@ -13,14 +13,14 @@ function MostrarFiltro(){
 }
 
 function Buscar(Ciudad,Tipo,Precio){
+  var form_data=new FormData();
+  form_data.append('Ciudad',Ciudad);
+  form_data.append('Tipo',Tipo);
+  form_data.append('Precio',Precio);
   $.ajax({
     url:'buscador.php',
     type:'POST',
-    data:{
-      Ciudad:Ciudad,
-      Tipo:Tipo,
-      Precio:Precio
-    }
+    data:{Ciudad,Tipo,Precio}
   }).done (function (data){
     var ContenidoBusqueda=document.getElementById('Resultados');
    ContenidoBusqueda.innerHTML=data;
