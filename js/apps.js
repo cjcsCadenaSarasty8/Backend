@@ -23,7 +23,6 @@ function Buscar(Ciudad,Tipo,Precio){
     data:{Ciudad,Tipo,Precio}
   }).done (function (data){
     var ContenidoBusqueda=document.getElementById('Resultados');
-   ContenidoBusqueda.innerHTML=data;
-   alert(data);
+    ContenidoBusqueda.innerHTML=data;
   });
 }

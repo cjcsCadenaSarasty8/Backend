@@ -11,12 +11,9 @@ MostrarElementos();
     $Precio=$_POST['Precio'];
     $PrecioLimites=explode(";", $Precio);
     $resultado="";
-    $resultado=$resultado." ciudad: ".$Ciudad;
-    $resultado=$resultado." Tipo: ".$Tipo;
-    $resultado=$resultado." Precio: ".$Precio;
     foreach ($data as $Domicilio) {
       $PrecioSolo=str_ireplace(",","",str_ireplace("$","",$Domicilio['Precio']));
-      if($Domicilio['Tipo']==$Tipo && $Domicilio['Ciudad']==$Ciudad && $PrecioSolo>=$PrecioLimites[0] && $PrecioSolo<=$PrecioLimites[1] ){
+      if(($Domicilio['Tipo']==$Tipo || empty($Tipo)) && ($Domicilio['Ciudad']==$Ciudad || empty($Ciudad))){
         $resultado=$resultado."<div class='card horizontal'>";
         $resultado=$resultado."<div class='card-image'>";
         $resultado=$resultado."<img src='img/home.jpg' width='auto' height?'100%'>";
@@ -35,7 +32,7 @@ MostrarElementos();
         $resultado=$resultado."</div>";
         $resultado=$resultado."</div>";
       }
-  }
+    }
    echo $resultado;
   }
  ?>
